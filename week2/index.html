@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Week 1 notes on readings for WDD 330.">
+        <meta name="description" content="Week 2 notes on readings for WDD 330.">
         <title>Week 2 Notes</title>
         <link rel="stylesheet" href="css/week2.css">
     </head>
@@ -12,10 +12,79 @@
             <h1>Week 2 Notes</h1>
         </header>
         <main>
+            <h2>Questions</h2>
             <ul>
-                <li>Nothing yet</li>
+                <li>What are some good ways of removing specific items from an array?</li>
+                <li>What are some uses for hoisting?</li>
             </ul>
-            <p>As you read, take notes and complete exercises record your work in this portfolio, making sure to keep the index up to date. If you do then turning in the link to your portfolio will be the best way to turn in your work each week, and at the mid and final checkpoints.</p>
+            <h2>Notes</h2>
+            <ul>
+                <li>// short comment</li>
+                <li>/* */ long comment</li>
+                <li>All non-primitives are called objects</li>
+                <li>Can assign multiple variables at once with commas</li>
+                <li>\' \" \` \n \r \t \\</li>
+                <li>pizza.charAt(3); z</li>
+                <li>pizza.indexOf('a'); 4</li>
+                <li>pizza.lastIndexOf('z'); 3</li>
+                <li>pizza.includes('a'); true</li>
+                <li>'cheese'.concat('pizza');</li>
+                <li>${___} inserts variable value</li>
+                <li>Create symbols using Symbol()</li>
+                <li>number.isInteger(4); true</li>
+                <li>number.toExponential(); 5e+0</li>
+                <li>number.toFixed(3); 3.142</li>
+                <li>number.toPrecision(2); 3.5</li>
+                <li>number++ : return number, then increase</li>
+                <li>++number : increase, then return number</li>
+                <li>'2' + 8 = '28'</li>
+                <li>Number('2') = 2</li>
+                <li>+'2' = 2</li>
+                <li>String(2) = '2'</li>
+                <li>2 +'' = '2'</li>
+                <li>parseInt('123F Street, 10); 123</li>
+                <li>parseFloat('2.5', 10); 2.5</li>
+                <li>2 != '2' : false</li>
+                <li>2 !== '2' : true</li>
+                <li>const [x,y] = [1,2]</li>
+                <li>[x,y] = [y,x] : swaps the values of the two variables</li>
+                <li>pop() : removes last item</li>
+                <li>shift() : removes first item</li>
+                <li>push() : adds to end</li>
+                <li>upshift() : add to beginning</li>
+                <li>list.concat(['pizza','cheese']); : merges arrays</li>
+                <li>spread (...)</li>
+                <li>join('and') : turn array into string with this delimeter</li>
+                <li>splice(3,1) : removes and then inserts new item in place</li>
+                <li>splice(4,0,'Item') : inserts into specific index without removing anything</li>
+                <li>list.reverse()</li>
+                <li>list.sort() : though sorts numbers alphabetically, not by value</li>
+                <li>list.includes('pizza');</li>
+                <li>map.set('type','cheese').set('life','good');</li>
+                <li>map.get('life'); 'good'</li>
+                <li>map.has('life'); true</li>
+                <li>map.size;</li>
+                <li>map.delete('life');</li>
+                <li>map.clear(); : removes all pairs</li>
+                <li>[...map] : turns map into array</li>
+                <li>while (condition) {}</li>
+                <li>while (--count) {}</li>
+                <li>do {} while (condition) : runs at least once</li>
+                <li>for (init; condition; after) {}</li>
+                <li>for (const item of items) {}</li>
+                <li>for (const key of items.keys()) {}</li>
+                <li>for (const value of items.values()) {}</li>
+                <li>for (const [key,value] of items.entries()) {}</li>
+                <li>function rest(...args) {return args;} : creates array of args entered</li>
+                <li>function mean(...values) {for(const value of values){}}</li>
+                <li>function tax(balance, rate=0.7) {} : default parameters (put last)</li>
+                <li>const quare = x => x*x;</li>
+                <li>Hoisting allows variables and functions to be used before they are defined</li>
+                <li>Callback : function passed into another function as a parameter</li>
+                <li>map() : does something to each item in array and returns new array</li>
+                <li>reduce() : iterates and combines each result to return one value</li>
+                <li>filter() : iterates and returns values that returned true</li>
+            </ul>
         </main>
     </body>
 </html>
