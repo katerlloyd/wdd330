@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W02 Team Activity </title>
+</head>
+<body>
+    <script>
+        const add_contents = () => {
+            let input = document.getElementById('info');
+            let p = document.createElement('p');
+
+            p.textContent = input.value;
+            document.querySelector('#contents').appendChild(p);
+        }
+
+        const add_numbers = (number) => {
+                let sum = 0;
+
+                for (i=0; i<=number; i++) {
+                    sum+=(number - i)
+                }
+
+                return sum
+            }
+
+        const add = (first, second) => { return String(first + second)};
+        const subtract = (first, second) => {return String(first - second)};
+        const multiply = (first, second) => {return String(first * second)};
+
+        const press = () => {
+
+            let first = Number(document.getElementById('first').value);
+            let second = Number(document.getElementById('second').value);
+            let p1 = document.createElement('p');
+            let p2 = document.createElement('p');
+            let p3 = document.createElement('p');
+
+            if (Number.isInteger(first) && Number.isInteger(second)) {
+                p1.textContent = `Add: ${add(first, second)}`;
+                p2.textContent = `Subtract: ${subtract(first, second)}`;
+                p3.textContent = `Multiply: ${multiply(first, second)}`;
+            } else {
+                p.textContent = "Input not an integer."
+            }
+
+            document.querySelector('#contents').appendChild(p1);
+            document.querySelector('#contents').appendChild(p2);
+            document.querySelector('#contents').appendChild(p3);
+
+            // let number = Number(document.getElementById('first').value);
+            // let p = document.createElement('p');
+
+            // if (Number.isInteger(number)) {
+            //     let sum = add_numbers(number);
+            //     p.textContent = String(sum);
+            // } else {
+            //     p.textContent = "Not an integer.";
+            // }
+
+            // document.querySelector('#contents').appendChild(p);
+        }
+    </script>
+    <form>
+        <label for="first">First number: 
+            <input type="text" name="first" id="first">
+        </label>
+        <label for="second">Second number: 
+            <input type="text" name="second" id="second">
+        </label>
+        <button type="button" onclick="press()">+</button>
+        <div id="contents"></div>
+    </form>
+</body>
+</html>
