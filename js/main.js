@@ -6,6 +6,10 @@ const array = [
     {
         label: 'Week 2 Notes', 
         link: 'week2/index.html'
+    },
+    {
+        label: 'Week 3 Notes', 
+        link: 'week3/index.html'
     }];
 
 let ol = document.querySelector('ol');
