@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Week 3 notes on readings for WDD 330.">
+        <title>Week 3 Notes</title>
+        <link rel="stylesheet" href="css/week3.css">
+    </head>
+    <body>
+        <header>
+            <h1>Week 3 Notes</h1>
+        </header>
+        <main>
+            <h2>Questions</h2>
+            <ul>
+                <li>What is a good way of formatting date strings after using toString?</li>
+                <li>When would you need to use the coordinates on a screen?</li>
+            </ul>
+            <h2>Notes</h2>
+            <ul>
+                <li>Arrow functions get 'this' from outer context</li>
+                <li>{ name: 'Hulk', ['catch' + 'Phrase']: 'Hulk Smash!' }</li>
+                <li>{ name: 'Captain Britain', hero: bewitched ? false : true }</li>
+                <li>{ [name]: 'Supergirl' } - symbols are used as computed property key</li>
+                <li>'city' in superman //false OR superman.city !== undefined //false</li>
+                <li>for(const key in superman) {}</li>
+                <li>for(const key of Object.keys(superman)) {}</li>
+                <li>for(const value of Object.values(superman)) {}</li>
+                <li>for(const [key,value] of Object.entries(superman)) {}</li>
+                <li>delete superman.fly --- removes fly method</li>
+                <li>Objects are copied by reference</li>
+                <li>JSON.parse(batman);</li>
+                <li>JSON.stringify(wonderWoman);</li>
+                <li>Math.random() --- between 0 and 1</li>
+                <li>Math.floor(6 * Math.random()) --- between 0 and 5</li>
+                <li>date.toString()</li>
+                <li>date.getFullYear()</li>
+                <li>date.setMinutes()</li>
+                <li>moments.js library --- for dates</li>
+                <li>const pattern = /[a-zA-Z]+ing$/; -- REGEXP</li>
+                <li>pattern.test('joke'); //false</li>
+                <li>Regular expression special characters and modifiers, greedy and lazy patterns</li>
+                <li>const pdf = /.*\.pdf$/;</li>
+                <li>pdf.test('chapter5.pdf'); //true</li>
+                <li>'Hello World!'.split(/\s+/); //['Hello', 'World!']</li>
+                <li>'JavaScript'.match(/[aeiou]/); //['a']</li>
+                <li>search() method returns the position of the first match</li>
+                <li>DOM - represents everything as nodes, including white space (#text)</li>
+                <li>legacy DOM shortcut methods</li>
+                <li>const imageArray = Array.from(document.images); OR const imageArray = [...document.images];</li>
+                <li>const textNode = wonderWoman.firstChild; //"Womder Woman"</li>
+                <li>textNode.nodeValue; OR textNode.textContent; //"Womder Woman"</li>
+                <li>wonderWoman.classList.contains('hero');</li>
+                <li>heroes.insertBefore(aquaman,wonderWoman);</li>
+                <li>heroes.removeChild(aquaman);</li>
+                <li>h1.replaceChild(newText,oldText);</li>
+                <li>getComputedStyle(superman);</li>
+                <li>getComputedStyle(superman).getPropertyCSSValue('color').cssText;</li>
+                <li>event.type, event.target</li>
+                <li>COORDINATES: `screen: (${event.screenX},${event.screenY}), page: (${event.pageX},${event.pageY}), client: (${event.screenX},${event.screenY})`</li>
+                <li>click, dblclick, highlight, mouseup, mousedown, mouseover, mouseout, mousemove</li>
+                <li>keydown, keyup, keypress</li>
+                <li>shiftKey, ctrlKey, altKey, metaKey --- properties of the event object and return true if the key was held down</li>
+                <li>addEventListener('click', (event) => {
+                    if (event.shiftKey) {
+                        console.log('A Shifty Click!');
+                    }
+                });</li>
+                <li>addEventListener('touchend', () => console.log('Touch stopped');</li>
+                <li>touchstart, touchend, touchmove, touchenter, touchleave, touchcancel</li>
+                <li>events.touches.length</li>
+                <li>onceParagraph.removeEventListener('click',remove);</li>
+                <li>event.preventDefault(); --- see if are cancellable</li>
+                <li>bubbling (default) vs capturing phase</li>
+                <li>ulElement.addEventListener('click',highlight);</li>
+            </ul>
+        </main>
+    </body>
+</html>
