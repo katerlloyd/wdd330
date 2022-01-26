@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Week 4 notes on readings for WDD 330.">
+        <title>Week 4 Notes</title>
+        <link rel="stylesheet" href="css/week4.css">
+    </head>
+    <body>
+        <header>
+            <h1>Week 4 Notes</h1>
+        </header>
+        <main>
+            <h2>Questions</h2>
+            <ul>
+                <li>What are some good modules to know about for JS?</li>
+            </ul>
+            <h2>Notes</h2>
+            <ul>
+                <li>const form = document.forms.search; - select form by name (name="search")</li>
+                <li>const input = form.searchInput (name="searchInput")</li>
+                <li>form.submit()</li>
+                <li>form.reset() - be careful about using this</li>
+                <li>form.action = '{url}'</li>
+                <li>input.addEventListener('focus', () => alert('focused'), false);</li>
+                <li>input.addEventListener('blur', () => alert('blurred'), false);</li>
+                <li>input.addEventListener('change', () => alert('changed'), false);</li>
+                <li>const form = document.forms['search'];
+                    form.addEventListener ('submit', search, false);
+                     --- 
+                    function search() {
+                        alert(`You Searched for: ${input.value}`);
+                        event.preventDefault();
+                    }</li>
+                <li>input.addEventListener('focus', function(){
+                    if (input.value==='Search Here') {
+                        input.value = '' 
+                    }
+                }, false);</li>
+                <li>input.addEventListener('blur', function(){
+                    if(input.value === '') {
+                        input.value = 'Search Here';
+                    } }, false);</li>
+                <li>Autofocus --- attribute give focus to this element when a page loads</li>
+                <li>Maxlength --- attribute will limit the number of characters that can be entered in the field to the value given </li>
+                <li>function makeHero(event) {
+
+                    event.preventDefault();
+                
+                    const hero = {}; 
+                
+                    hero.name = form.heroName.value;
+                
+                    alert(JSON.stringify(hero)); 
+                    return hero;
+                }</li>
+                <li>hero.realName = form.realName.value;</li>
+                <li>CHECKBOXES: hero.powers = [...form.powers].filter(box => box.checked).map(box => box.value);</li>
+                <li>document.forms.hero.powers[0].checked = true;</li>
+                <li>RADIOS: LABEL, INPUT input type='radio' name='category' value='Villain' id='villain', LABEL</li>
+                <li>SUBMISSION: [input, input, input, value: "Antihero"]</li>
+                <li>hero.category = form.category.value;</li>
+                <li>A file input field can be created using input fields with type='file'. These are used to upload files, and most browsers will provide a browse button or similar that lets users select a file from their file system.</li>
+                <li>input type="hidden", "color","number","tel"...</li>
+                <li>hero.age = form.age.value;</li>
+                <li>DROP-DOWN: form.city.options[form.city.selectedIndex].text</li>
+                <li>TEXTAREA: form.origin.value = 'Born as Kal-El on the planet Krypton...';</li>
+                <li>BUTTON: type="reset","button"</li>
+                <li>VALIDATION occurs on the client side with JS and also on the server side</li>
+                <li>const label = form.querySelector('label');
+                    const error = document.createElement('div');
+                    error.classList.add('error');
+                    error.textContent = '! Your name is not allowed to start with X.';
+                    label.append(error);
+                    
+                    function validateInline() {
+                        const heroName = this.value.toUpperCase();
+                        if(heroName.startsWith('X')){
+                        error.style.display = 'block';
+                        } else {
+                        error.style.display = 'none';
+                        }
+                    }</li>
+                <li>BUTTON: button type='submit' id='submit' disabled</li>
+                <li>function disableSubmit(event) {
+                    if(event.target.value === ''){
+                        document.getElementById('submit').disabled = true;
+                    } else {
+                        document.getElementById('submit').disabled = false;
+                    }
+                }</li>
+                <li>OOP: encapsulation, polymorphism, inheritance</li>
+                <li>JS is a prototype-based language, rather than a class-based language</li>
+                <li>const dice = {
+                    sides: 6,
+                    roll() {
+                        return Math.floor(this.sides * Math.random() + 1)
+                    }    
+                }</li>
+                <li>const Dice = function(sides=6){
+                    this.sides = sides;
+                    this.roll = function() {
+                        return Math.floor(this.sides * Math.random() + 1)
+                    }
+                }</li>
+                <li>class Dice {
+                    constructor(sides=6) {
+                        this.sides = sides;
+                    }
+                
+                    roll() {
+                        return Math.floor(this.sides * Math.random() + 1)
+                    }
+                }</li>
+                <li>const redDice = new Dice; OR const whiteDice = new Dice(4);</li>
+                <li>redDice instanceof Dice</li>
+                <li>constructedArray = new Array(1,2,3);</li>
+                <li>Static method --- called by the class directly rather than by instances of the class. Static methods are not available to instances of the class. </li>
+                <li>Dice.prototype.color = "red"</li>
+                <li>Turtle.prototype.attack = function(){
+                    return `Feel the power of my ${this.weapon}!`;
+                    }</li>
+                <li>raph.constructor.prototype; OR Object.getPrototypeOf(raph); OR raph.__proto__</li>
+                <li>Turtle.prototype.isPrototypeOf(raph)</li>
+                <li>raph.hasOwnProperty('name');</li>
+                <li>Changing the protoype will change all of the instances, not just one --- can overwrite prototype properties</li>
+                <li>The prototype can be used to add any new properties and methods after the class has been declared. It should be used to define any properties that will remain the same for every instance of the class.</li>
+                <li>Never use arrays or objects as a default value in prototype.</li>
+                <li>PRIVATE: The _color property is created as a variable inside the scope of the constructor function inside the class declaration. This makes it impossible to access outside of this scope.</li>
+                <li>this.setColor = (color) => {
+                    if(typeof color === 'string'){
+                        return _color = color;
+                        } else {
+                            throw new Error('Color must be a string');
+                        }
+                    }</li>
+                <li>Object.getPrototypeOf(raph</li>
+                <li>ENUMERABLE: Properties of objects in JavaScript are said to be enumerable or non-enumerable. If they aren't enumerable, this means they will not show up when a for-in loop is used to loop through an object’s properties and methods.</li>
+                <li>EXTENDS: A class can inherit from another class using the extends keyword in a class declaration.</li>
+                <li>2..toExponential();</li>
+                <li>class Turtle {
+                    // other turtle methods here
+                
+                    toString() {
+                        return `A turtle called ${this.name}`;
+                    }
+                }
+                
+                raph.toString();</li>
+                <li>ADD TO PRE-EXISTING PROTOTYPE (not advised): Number.prototype.isEven = function() {
+                    return this%2 === 0;
+                }
+                
+                Number.prototype.isOdd = function() {
+                    return this%2 === 1;
+                }</li>
+                <li>ADD DELETE METHOD: Array.prototype.delete = function(i) {
+                    return self.splice(i,1);
+                }</li>
+                <li>class myArray extends Array</li>
+                <li>writable: false</li>
+                <li>const lois = Object.create(Human);</li>
+                <li>Extra properties can then be added to each instance using assignment: lois.name = 'Lois Lane';</li>
+                <li>INIT: Superhuman.init = function(name,realName){
+                    this.name = name;
+                    this.realName = realName;
+                    this.init = undefined; // this line removes the init function, so it can only be called once
+                    return this;
+                } ===> const batman = Object.create(Superhuman);
+                batman.init('Batman','Bruce Wayne');</li>
+                <li>MIXIN: A mixin is a way of adding properties and methods of some objects to another object without using inheritance. It allows more complex objects to be created by ‘mixing’ basic objects together. Basic mixin functionality is provided by the Object.assign() method. One use for the mixin() function is to add a large number of properties to an object all at once. The mixin() function lets us encapsulate properties and methods in an object, then add them to other objects without the overhead of an inheritance chain being created.</li>
+                <li>function mixin(target,...objects) {
+                    for (const object of objects) {   
+                    if(typeof object === 'object') {
+                        for (const key of Object.keys(object)) {
+                            if (typeof object[key] === 'object') {
+                            target[key] = Array.isArray(object[key]) ? [] : {};
+                            mixin(target[key],object[key]);
+                            } else {
+                            Object.assign(target,object);  
+                            }
+                        }
+                        }
+                    }
+                    return target;
+                }</li>
+                <li>for-in, for-of, forEach</li>
+                <li>DEEP COPY: function copy(target) {
+                    const object =  Object.create(Object.getPrototypeOf(target));
+                    mixin(object,target);
+                    return object;
+                }</li>
+                <li>FACTORY: A factory function is a function that can be used to return an object.</li>
+                <li>Prototype vs mixin: whether an object is something or whether it has something</li>
+                <li>superman.friends = [batman,wonderWoman,aquaman]
+
+                    superman.findFriends = function(){
+                        this.friends.forEach(function(friend) {
+                            console.log(`${friend.name} is friends with ${this.name}`);
+                        }
+                        );
+                    }</li>
+                <li>THAT: A common solution is to set the variable that to equal thisbefore the nested function, and refer to that in the nested function instead of this.</li>
+                <li>BIND: The bind() method is a method for all functions and is used to set the value of this in the function. If this is provided as an argument to bind() while it’s still in scope, any reference to this inside the nested function will be bound to the object calling the original method.</li>
+                <li>ARROW: don't have their own this context, so this remains bound to the original object making the function call</li>
+                <li>const fly = superman.fly; --- barrow method, can do same thing with native methods</li>
+                <li>PROBLEM: "You wanted a banana but what you got was a gorilla holding the banana and the entire jungle."</li>
+                <li>Only inherit once, to avoid problems, and barrow methods</li>
+                <li>COUPLING: The coupling of code refers to how dependent certain elements or modules of code are on each other. Two pieces of code are said to be tightly coupled if one relies on the other to run.</li>
+                <li>The value of this in the top level of a module is undefined, rather than the global object.</li>
+                <li>import { PI } from './pi.js';</li>
+                <li>EXPORT FUNCTIONS: export {
+                    variance,
+                    mean
+                }</li>
+                <li>IMPORT FUNCTIONS: import  { mean, variance } from './stats.js'; OR import * as stats from './stats.js';</li>
+                <li>DEFAULTS: export default PI; export default square; -- don't export more than one default</li>
+                <li>ALIAS: import sq from './square.js'; sq(8)</li>
+            </ul>
+        </main>
+    </body>
+</html>
