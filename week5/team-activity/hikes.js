@@ -36,7 +36,6 @@ const hikeList = [
 export default class Hikes {
 	constructor(elementId) {
 		this.parentElement = document.getElementById(elementId);
-		this.backButton = this.buildBackButton();
 	}
 
 	getAllHikes() {
@@ -51,14 +50,12 @@ export default class Hikes {
 		this.parentElement.innerHTML = '';
 		renderHikeList(this.parentElement, this.getAllHikes());
 		this.addHikeListener();
-		this.backButton.classList.add('hidden');
 	}
 
 	showOneHike(hikeName) {
 		const hike = this.getHikeByName(hikeName);
 		this.parentElement.innerHTML = '';
 		this.parentElement.appendChild(renderOneHikeFull(hike));
-		this.backButton.classList.remove('hidden');
 	}
 
 	addHikeListener() {
@@ -68,17 +65,6 @@ export default class Hikes {
 				this.showOneHike(err.currentTarget.dataset.name);
 			});
 		});
-	}
-
-	buildBackButton() {
-		const backButton = document.createElement('button');
-		backButton.innerHTML = '&lt;- All Hikes';
-		backButton.addEventListener('touchend', () => {
-			this.showHikeList();
-		});
-		backButton.classList.add('hidden');
-		this.parentElement.before(backButton);
-		return backButton;
 	}
 }
 

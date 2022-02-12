@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Book of Mormon DOM manipulation example.">
+        <title>W06 Todo Project</title>
+        <link rel="stylesheet" href="css/week6.css">
+        <script defer type="module" src="js/main.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Todos</h1>
+        </header>
+        <main>
+            <div class="box">
+                <div class="listcontainer"></div>
+                <div class="counter">
+                    <p id="count">0 tasks left</p>
+                    <div class="buttons">
+                        <button id="all">All</button>
+                        <button id="active">Active</button>
+                        <button id="completed">Completed</button>
+                    </div>
+                </div>
+                <div class="insert">
+                    <label><br>
+                        <input type="text" id="addtask" placeholder="Add a task" required></label>
+                    <button id="addButton">+</button>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

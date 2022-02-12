@@ -1,0 +1,86 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14pt;
+}
+
+h1 {
+    text-align: center;
+}
+
+main {
+    padding: 0 1rem;
+}
+
+.listcontainer {
+    justify-items: center;
+}
+
+.task {
+    padding: 0.5rem;
+    border: 1px solid black;
+}
+
+.task p {
+    display: inline;
+    margin: 0 0.5rem;
+}
+
+.counter p {
+    display: inline;
+}
+
+.insert {
+    position: absolute;
+    bottom: 0;
+    margin: 0.5rem;
+}
+
+.insert button {
+    background-color: white;
+    border: 1px solid black;
+    padding: 0.29rem 0.5rem;
+}
+
+#addtask {
+    font-size: inherit;
+    padding: 0.25rem 0.5rem;
+}
+
+.listcontainer button {
+    background-color: white;
+}
+
+button {
+    font-size: inherit;
+}
+
+button:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.deletebutton {
+    float: right;
+    border: none;
+}
+
+.checkbutton {
+    border: 1px solid black;
+    min-width: 20pt;
+    min-height: 20pt;
+}
+
+.counter {
+    padding: 0.5rem;
+    border: 1px solid black;
+}
+
+.buttons {
+    display: inline;
+    float: right;
+}
+
+.buttons button {
+    border: none;
+    background-color: white;
+}
