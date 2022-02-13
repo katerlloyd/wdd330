@@ -4,25 +4,25 @@ class Todos {
         this.element = document.querySelector('.listcontainer');
     }
 
-    removeTodo = () => {
-        console.log('removeTodo');
-        this.listTodos;
+    removeTodo = (key) => {
+        // console.log('removeTodo');
+        localStorage.setItem(key, todoList);
     }
 
     listTodos() {
-        console.log('listTodos');
+        // console.log('listTodos');
         renderTodoList(todoList, this.element);
     }
 
     addTodo = () => {
-        console.log('addTodo');
+        // console.log('addTodo');
         const input = document.querySelector('input');
         saveTodo(this.key, input.value);
         this.listTodos();
     }
 
     completeTodo = (task) => {
-        console.log('completeTodo');
+        // console.log('completeTodo');
         if (task.completed === true) {
             task.completed = false;
         } else {
@@ -30,54 +30,64 @@ class Todos {
         }
     }
 
-    filterTodos() {
-        console.log('filterTodos');
-        let completed = this.todoList.filter((task) => task.completed);
+    filterTodos = () => {
+        // console.log('filterTodos');
+        // let allButton = document.querySelector('#all');
 
-        let active = this.todoList.filter((task) => !task.completed);
+        // allButton.addEventListener('click', function() {
+        //     console.log('allButton');
+        //     todoList.forEach(task => {
+        //         task.style.display = 'block';
+        //     });
+        //     renderTodoList(todoList, this.element);
+        // });
+
+        // let activeButton = document.querySelector('#active');
+
+        // activeButton.addEventListener('click', function() {
+        //     console.log('activeButton');
+        //     todoList.forEach(task => {
+        //         if (task.completed) {
+        //             task.style.display = 'none';
+        //         }
+        //     });
+        //     renderTodoList(todoList, this.element);
+        // });
+
+        // let completedButton = document.querySelector('#completed');
+        // completedButton.addEventListener('click', function() {
+        //     console.log('completedButton');
+        //     todoList.forEach(task => {
+        //         if (!task.completed) {
+        //             task.style.display = 'none';
+        //         }
+        //     });
+        //     renderTodoList(todoList, this.element);
+        // });
+        // let completed = this.todoList.filter((task) => task.completed);
+
+        // let active = this.todoList.filter((task) => !task.completed);
     }
 }
 
+
+
+
+
+
+
 const  todoList = [];
 
-// const todoList = [
-//     {
-//         id: '',
-//         content: 'Eat chocolate',
-//         completed: true
-//     },
-//     {
-//         id: '',
-//         content: 'Eat more chocolate',
-//         completed: false
-//     },
-//     {
-//         id: '',
-//         content: 'Write a story',
-//         completed: true
-//     },
-//     {
-//         id: '',
-//         content: 'Play game',
-//         completed: false
-//     },
-//     {
-//         id: '',
-//         content: 'Learn Russian',
-//         completed: false
-//     }
-// ];
-
 function saveTodo(key, task) {
-    console.log('saveTodo');
+    // console.log('saveTodo');
     let todo = { id: Date.now(), content: task, completed: false };
-    console.log(todo);
+    // console.log(todo);
     todoList.push(todo);
     localStorage.setItem(key, todoList);
 }
 
 function getTodos(key) {
-    console.log('getTodos');
+    // console.log('getTodos');
     if (todoList.length === 0 || todoList === null) {
         todoList = localStorage.getItem(key);
     }
@@ -85,25 +95,14 @@ function getTodos(key) {
 }
 
 const renderTodoList = (list, element) => {
-    console.log('renderTodoList');
+    element.innerHTML = "";
+    // console.log('renderTodoList');
     list.forEach(task => {
         let div = document.createElement('div');
         div.classList.add('task');
 
         let checkButton = document.createElement('button');
         checkButton.classList.add('checkbutton');
-
-        checkButton.addEventListener('click', function() {
-            console.log('checkButton');
-            console.log(list);
-            // completeTodo(task);
-            if (task.completed === true) {
-                task.completed = false;
-            } else {
-                task.completed = true;
-            }
-            renderTodoList(list);
-        });
 
         let text = document.createElement('p');
         text.textContent = task.content;
@@ -113,20 +112,31 @@ const renderTodoList = (list, element) => {
             text.style.textDecoration = 'line-through';
         }
 
+        checkButton.addEventListener('click', function() {
+            // console.log('checkButton');
+            // console.log(list);
+            // completeTodo();
+            if (task.completed === true) {
+                task.completed = false;
+            } else {
+                task.completed = true;
+            }
+            renderTodoList(list, element);
+        });
+
         let deleteButton = document.createElement('button');
         deleteButton.classList.add('deletebutton');
         deleteButton.textContent = 'X';
 
         deleteButton.addEventListener('click', function() {
-            console.log('deleteButton');
+            // console.log('deleteButton');
 
-            // list.removeTodo();
-            list.forEach((task, index, object) => {
-            if (task.id) {
-                object.splice(index, 1);
-            }
-        });
+            // removeTodo();
+            let taskIndex = todoList.indexOf(task);
+            todoList.splice(taskIndex, 1);
+            localStorage.setItem('list', todoList);
             element.removeChild(div); 
+            renderTodoList(todoList, element);
         });
 
         div.appendChild(checkButton);
@@ -135,8 +145,35 @@ const renderTodoList = (list, element) => {
         element.appendChild(div);
     });
 
+    // filterTodos();
+    let allButton = document.querySelector('#all');
+
+    allButton.addEventListener('click', function() {
+        // console.log('allButton');
+        // todoList.forEach(task => {
+        //     task.style.display = 'block';
+        // });
+
+        renderTodoList(todoList, element);
+    });
+
+    let activeButton = document.querySelector('#active');
+
+    activeButton.addEventListener('click', function() {
+        // console.log('activeButton');
+        let active = todoList.filter((task) => !task.completed);
+        renderTodoList(active, element);
+    });
+
+    let completedButton = document.querySelector('#completed');
+    completedButton.addEventListener('click', function() {
+        // console.log('completedButton');
+        let completed = todoList.filter((task) => task.completed);
+        renderTodoList(completed, element);
+    });
+
     let number = 0;
-    list.forEach((task) => {
+    todoList.forEach((task) => {
         if (task.completed === false) {
             number++;
         }

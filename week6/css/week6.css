@@ -11,6 +11,10 @@ main {
     padding: 0 1rem;
 }
 
+.box {
+    max-width: fit-content;
+}
+
 .listcontainer {
     justify-items: center;
 }
