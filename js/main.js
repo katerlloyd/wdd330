@@ -22,6 +22,10 @@ const array = [
     {
         label: 'Week 6 Project', 
         link: 'week6/index.html'
+    },
+    {
+        label: 'Week 7 Notes', 
+        link: 'week7/index.html'
     }];
 
 let ol = document.querySelector('ol');

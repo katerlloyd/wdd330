@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Week 7 notes on readings for WDD 330.">
+        <title>Week 7 Notes</title>
+        <link rel="stylesheet" href="css/week7.css">
+    </head>
+    <body>
+        <header>
+            <h1>Week 7 Notes</h1>
+        </header>
+        <main>
+            <h2>Questions</h2>
+            <ul>
+                <li>What does does AJAX look like? Is just JS formatted in a certain way or is it something else?</li>
+            </ul>
+            <h2>Notes</h2>
+            <ul>
+                <li>sayHello.call(clark); - when function returns this.name - call and apply methods</li>
+                <li>functionName.description = 'words'</li>
+                <li>Cache - If a function takes some time to compute a return value, we can save the result in a cache property. Then if the same argument is used again later, we can return the value from the cache, rather than having to compute the result again. </li>
+                <li>An Immediately Invoked Function Expression is an anonymous function that is invoked as soon as it is defined. EX: (function(){
+                    const temp = 'World';
+                    console.log(`Hello ${temp}`);
+                    })();</li>
+                <li>IIFE variables only avalable while function is running. Can also destructure instead: let [a,b] = [1,2];
+                    [a,b] = [b,a];</li>
+                <li>Can use IIFE to initialize code as well</li>
+                <li>(function() {
+                    'use strict';
+                    // code you want to check                
+                })();</li>
+                <li>An IIFE can be used to enclose a block of code inside its own private scope so it doesn’t interfere with any other part of the program. (nested IIFEs)</li>
+                <li>A function is able to not only call itself, but define itself, and even redefine itself. This is done by assigning an anonymous function to a variable that has the same name as the function. -- run one way first time and different way all subsequent times -- lazy definition pattern</li>
+                <li>Properties can be lost when the function redefines itself</li>
+                <li>int-time branching -- This technique can be used with the feature detection that we discussed in the last chapter to create functions that rewrite themselves, known as init-time branching. This enables the functions to work more effectively in the browser, and avoid checking for features every time they’re invoked.</li>
+                <li>CHECK IF SUPPORTED: function ride(){
+                    if (window.unicorn) { 
+                        ride = function(){
+                        // some code that uses the brand new and sparkly unicorn methods
+                        return 'Riding on a unicorn is the best!';
+                        }
+                    } else {
+                        ride = function(){
+                        // some code that uses the older pony methods
+                        return 'Riding on a pony is still pretty good';
+                        }
+                    }
+                    return ride();
+                }</li>
+                <li>Function will be invoked twice the first time</li>
+                <li>RECURSION: function factorial(n) {
+                    if (n === 0) {
+                        return 1;
+                    } else {
+                        return n * factorial(n - 1);
+                    }
+                }</li>
+                <li>Callbacks can be used to facilitate event-driven asynchronous programming. Once the task has been completed, the callback will be invoked before returning to the rest of the program.</li>
+                <li>Callback hell - don't use more than one callback in a function to avoid lots of nested blocks</li>
+                <li>PROMISES: const promise = new Promise( (resolve, reject) => {
+                    // initialization code goes here
+                    if (success) {
+                        resolve(value);
+                    } else {
+                        reject(error);
+                    }
+                });</li>
+                <li>promise.then( result => console.log(`Yes! I rolled a ${result}`), result => console.log(`Drat! ... I rolled a ${result}`) );</li>
+                <li>promise.catch( result => console.log(`Drat! ... I rolled a ${result}`));</li>
+                <li>ASYNC FUNCTIONS: These functions are preceded by the   async   keyword and allow you to write asynchronous code as if it was synchronous. This is achieved by using the   await   operator before an asynchronous function. This will wrap the return value of the function in a promise that can then be assigned to a variable. The next line of code is not executed until the promise is resolved.</li>
+                <li>CLOSURE: function outer() {
+                    const outside = 'Outside!';
+                    function inner() {
+                        const inside = 'Inside!';
+                        console.log(outside);
+                        console.log(inside);
+                    }
+                    return inner;
+                }</li>
+                <li>A closure is formed when the inner function is returned by the outer function, maintaining access to any variables declared inside the enclosing function.</li>
+                <li>const closure = outer();
+                    The variable closure now points to the inner() function that is returned by the outer() function. Closures not only have access to variables declared in a parent function's scope, they can also change the value of these variables. </li>
+                <li>To define a generator function, an asterisk symbol (*) is placed after the function declaration, like so:
+                    function* exampleGenerator() {
+                    // code for the generator goes here
+                    }
+                    Calling a generator function does not actually run any of the code in the function; it returns a   Generator   object that can be used to create an iterator that implements a   next()   method that returns a value every time the next() method is called.</li>
+                <li>Pure functions -- At least one argument; otherwise the return value must depend on something other than the arguments of the function, breaking the first rule
+                    A return value; otherwise there’s no point in the function (unless it has changed something else in the program – in which case, it’s broken the 'no side-effects' rule).</li>
+                <li>function reverse(string) {
+                    return string.split('').reverse().join('');
+                }</li>
+                <li>Currying is a process that involves the partial application of functions. A function is said to be curried when not all arguments have been supplied to the function, so it returns another function that retains the arguments already provided, and expects the remaining arguments that were omitted when the original function was called. A final result is only returned once all the expected arguments have eventually been provided.</li>
+                <li>function curry(func,...oldArgs) {
+                    return function(...newArgs) {
+                        const allArgs = [...oldArgs,...newArgs];
+                        return func(...allArgs);
+                    }
+                }</li>
+                <li>AJAX allows JavaScript to request resources from a server on behalf of the client. The resources requested are usually JSON data or small fragments of text or HTML rather than a whole web page.</li>
+                <li>cross-origin resource sharing (CORS) in order to avoid the same-origin policy that browsers enforce</li>
+                <li>The same-origin policy in browsers blocks all requests from a domain that is different from the page making the request. </li>
+                <li>AJAX: Asynchronous JavaScript and XML</li>
+                <li>The Fetch API uses promises to avoid callback hell, and also streamlines a number of concepts that had become cumbersome when using the XMLHttpRequest object.</li>
+                <li>fetch('https://example.com/data')
+                    .then( // code that handles the response )
+                    .catch( // code that runs if the server returns an error )</li>
+                <li>const url = 'https:example.com/data';
+
+                    fetch(url)
+                    .then((response) => {
+                        if(response.ok) {
+                            return response;
+                        }
+                        throw Error(response.statusText);
+                    })
+                    .then( response => // do something with response )
+                    .catch( error => console.log('There was an error!') )</li>
+                <li>headers – A Headers object (see later section) containing any headers associated with the response
+                    url – A string containing the URL of response
+                    redirected – A boolean value that specifies if the response is the result of a redirect
+                    type – A string value of 'basic', 'cors', 'error' or 'opaque'. A value of 'basic' is used for a response from the same domain. A value of 'cors' means the data was received from a valid cross-origin request from a different domain. A value of 'opaque' is used for a response received from 'no-cors' request from another domain, which means access to the data will be severely restricted. A value of 'error' is used when a network error occurs.</li>
+                <li>fetch(url)
+                    .then( response => response.redirect(newURL)); // redirects to another URL
+                    .then( // do something else )
+                    .catch( error => console.log('There was an error: ', error))</li>
+                <li>The text() method takes a stream of text from the response, reads it to completion and then returns a promise that resolves to a USVSting object that can be treated as a string in JavaScript.</li>
+                <li>The blob() method is used to read a file of raw data, such as an image or a spreadsheet. Once it has read the whole file, it returns a promise that resolves with a blob object.</li>
+                <li>JSON: fetch(url)
+                    .then( response => response.json() ); // transforms the JSON data into a JavaScript object
+                    .then( data => console.log(Object.entries(data)) )
+                    .catch( error => console.log('There was an error: ', error))</li>
+                <li>RESPONSE OBJECT: const response = new Response( 'Hello!', {
+                    ok: true,
+                    status: 200,
+                    statusText: 'OK',
+                    type: 'cors',
+                    url: '/api'
+                });</li>
+                <li>REQUESTS: url – The URL of the requested resource (the only property that is required).
+                    method – a string that specifies which HTTP method should be used for the request. By default, this is 'GET'.
+                    headers – This is a Headers object (see later section) that provides details of the request's headers.
+                    mode – Allows you to specify if CORS is used or not. CORS is enabled by default.
+                    cache – Allows you to specify how the request will use the browser's cache. For example, you can force it to request a resource and update the cache with the result, or you can force it to only look in the cache for the resource.
+                    credentials – Lets you specify if cookies should be allowed with the request.
+                    redirect – Specifies what to do if the response returns a redirect. There’s a choice of three values: 'follow' (the redirect is followed), 'error' (an error is thrown) or 'manual' (the user has to click on a link to follow the redirect).</li>
+                <li>REQUEST OBJECT: const request = new Request('https://example.com/data', {
+                    method: 'GET',
+                    mode: 'cors',
+                    redirect: 'follow',
+                    cache: 'no-cache'
+                });</li>
+                <li>fetch('https://example.com/data', {
+                    method: 'GET',
+                    mode: 'cors',
+                    redirect: 'follow',
+                    cache: 'no-cache'
+                })
+                .then( // do something with the response )
+                .catch( // handle any errors)</li>
+                <li>HTTP headers are used to pass on any additional information about a request or response. Typical information contained in headers includes the file-type of the resource, cookie information, authentication information and when the resource was last modified.</li>
+                <li>const headers = new Headers({ 'Content-Type': 'text/plain', 'Accept-Charset' : 'utf-8', 'Accept-Encoding':'gzip,deflate' })</li>
+                <li>has() – Can be used to check if the headers object contains the header provided as an argument.</li>
+                <li>get() - Returns the value of the header provided as an argument</li>
+                <li>set() – Can be used to set a value of an already existing header, or create a new header with the value provided as an argument if it does not already exist.</li>
+                <li>append() – Adds a new header to the headers object.</li>
+                <li>delete() – Removes the header provided as an argument.</li>
+                <li>keys(), values() and entries() – Iterators that can be used to iterate over the headers key, values or entries (key and value pairs).</li>
+                <li>const form = document.forms['todo'];
+                    form.addEventListener('submit', addTask, false);
+                    
+                    function addTask(event) {
+                        event.preventDefault();
+                        const number = form.task.value;
+                        const task = {
+                            userId: 1,
+                            title: form.task.value,
+                            completed: false
+                        }
+                        const data = JSON.stringify(task);
+                        const url = 'https://jsonplaceholder.typicode.com/todos';
+                    
+                        const headers = new Headers({
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        });
+                        const request = new Request(url,
+                        {
+                            method: 'POST',
+                            header: headers,
+                            body: data
+                        }
+                        )
+                    
+                        fetch(request)
+                        .then( response => response.json() )
+                        .then( task => console.log(`Task saved with an id of ${task.id}`) )
+                        .catch( error => console.log('There was an error:', error))
+                    
+                    }</li>
+                <li>SEND WITH FORM: const request = new Request(form.action,
+                    {
+                        method: form.method,
+                        header: headers,
+                        body: data
+                    }
+                    )</li>
+                    <li>const data = new FormData();</li>
+            </ul>
+        </main>
+    </body>
+</html>
