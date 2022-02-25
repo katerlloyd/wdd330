@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Week 8 notes on readings for WDD 330.">
+        <title>Week 8 Notes</title>
+        <link rel="stylesheet" href="css/week8.css">
+    </head>
+    <body>
+        <header>
+            <h1>Week 8 Notes</h1>
+        </header>
+        <main>
+            <h2>Questions</h2>
+            <ul>
+                <li>What other drag and drop options are there?</li>
+            </ul>
+            <h2>Notes</h2>
+            <ul>
+                <li>The CSS3 transform property lets you lets you translate, rotate, scale, and/or skew any element on the page. </li>
+                <li>Translation functions allow you to move elements left, right, up, or down. </li>
+                <li> transform: translateX(40px) scale(1.5); --> transform function order matters</li>
+                <li>transform: translateY(-30px);</li>
+                <li>Transforms don’t work on inline elements. --> change to inline-block</li>
+                <li>transform: scale(1.5, 0.25);</li>
+                <li>scale(2) would double its proportions</li>
+                <li>The rotate() function rotates an element around the point of origin by a specified angle value.</li>
+                <li>The skew(x,y) function specifies a skew along the x and y axes. --> skewY()</li>
+                <li>transform-origin: 0 0;</li>
+                <li>To mimic translation use position: relative;, and top and left values</li>
+                <li>Animation has certainly been possible for some time with JavaScript, but native CSS transitions generally require less client-side processing, so they’ll usually appear smoother. On mobile devices with limited computing power, this can be a lifesaver.</li>
+                <li>Transitions allow the values of CSS properties to change over time, essentially providing simple animations. </li>
+                <li>The -webkit- vendor prefix is still needed for older mobile devices</li>
+                <li>include a pre-state and a post-state</li>
+                <li>transition-property: transform, color;</li>
+                <li>transition-duration: 0.2s;</li>
+                <li>200ms is generally considered the optimum time for a transition</li>
+                <li>The transition-timing-function lets you control the pace of the transition in even more granular detail. Do you want your animation to start off slow and become faster, start off fast and end slower, advance at an even keel, or some other variation? The most common timing functions include the key terms ease, linear, ease-in, ease-out, or ease-in-out.</li>
+                <li>linear is the same as cubic-bezier(0, 0, 1, 1)</li>
+                <li>By using the transition-delay property, it’s possible to introduce a delay before the transition begins</li>
+                <li>transition: transform 0.2s ease-out 50ms; --> shorthand</li>
+                <li>transition: transform 0.2s ease-out 50ms, color 0.1s linear 50ms; --> multiple transitions</li>
+                <li>When using the all keyword, all the properties transition at the same rate, speed, and delay</li>
+                <li>@keyframes moveRight { 
+                    from {
+                    transform: translateX(-50%);
+                    }
+                    to {
+                    transform: translateX(50%);
+                    }
+                }
+                
+                @keyframes appearDisappear { 
+                    0%, 100% {
+                    opacity: 0;
+                    }
+                    20%, 80% {
+                    opacity: 1;
+                    }
+                }</li>
+                <li>.ad-ad3 :after {
+                    content: '';
+                    width: 90px;
+                    height: 92px;
+                    background-image: url(../images/bike_sprite.png);
+                    display: block;
+                    margin: auto;
+                }
+                
+                @keyframes bike {
+                    0% {
+                    background-position: 0 0;
+                    }
+                    100% {
+                        background-position: -360px 0;
+                    }
+                }</li>
+                <li>animation: 300ms ease-in alternate 5s backwards appearDisappear; --> shorthand</li>
+                <li>Use animations and transitions where it makes sense, enhancing the user experience—and skip it everywhere else.</li>
+                <li>CANVAS: var img = new Image();
+                    img.src = "../images/bg-bike.png";
+                    img.onload = function() {
+                    let pattern = context.createPattern(img, "repeat"); 
+                    context.fillStyle = pattern;                        
+                    context.fillRect(10, 10, 100, 100);                  
+                    context.strokeRect(10, 10, 100, 100);             
+                    };</li>
+                <li>let gradient = context.createLinearGradient(0, 0, 0, 200); </li>
+                <li>ARC: x and y represent where on the canvas you want the arc’s path to begin. Imagine this as the center of the circle that you’ll be drawing. radius is, of course, the distance from the center to the edge of the circle.</li>
+                <li>function saveDrawing() {
+                    var canvas5 = document.getElementById("demo5");
+                    window.open(canvas5.toDataURL("image/png"));
+                }</li>
+                <li>function drawImageToCanvas() {
+                    var canvas = document.getElementById("demo6");
+                    var context = canvas.getContext("2d");
+                    var image = document.getElementById("myImageElem");
+                    context.drawImage(image, 0, 0); 
+                }</li>
+                <li>Once we’ve drawn an image on the canvas, we can use the getImageData method from the Canvas API to manipulate the pixels of that image. For example, if we wanted to convert our logo from color to black and white, we can do so using methods in the Canvas API.</li>
+                <li>function manipulateImage() {
+                    var canvas = document.getElementById("demo7");
+                    var context = canvas.getContext("2d");
+                    var image = document.getElementById("secondImage");
+                    context.drawImage(image, 60, 60);
+                
+                    var imageData = context.getImageData(0, 0, 200, 200);
+                    
+                    for (var i = 0; i < imageData.data.length; i += 4) {
+                    var red = imageData.data[i];
+                    var green = imageData.data[i + 1];
+                    var blue = imageData.data[i + 2];
+                        
+                    var grayscale = red * 0.3 + green * 0.59 + blue * 0.11;
+                        
+                    imageData.data[i] = grayscale;
+                    imageData.data[i + 1] = grayscale;
+                    imageData.data[i + 2] = grayscale;
+                    } 
+                    context.putImageData(imageData, 0, 0);
+                }</li>
+                <li>function drawOneFrame(video, context, canvas){
+                    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                
+                    try {
+                    var imageData = context.getImageData(0, 0, canvas.width, 
+                ↵canvas.height);
+                    var pixelData = imageData.data;
+                    for (var i = 0; i < pixelData.length; i += 4) {
+                        var red = pixelData[i];
+                        var green = pixelData[i + 1];
+                        var blue = pixelData[i + 2];
+                        var grayscale = red * 0.3 + green * 0.59 + blue * 0.11;
+                        pixelData[i] = grayscale;
+                        pixelData[i + 1] = grayscale;
+                        pixelData[i + 2] = grayscale;
+                    }
+                    
+                    imageData.data = pixelData;
+                    context.putImageData(imageData, 0, 0);
+                    } catch (err) {
+                    // error handling code will go here
+                    }}</li>
+                <li>    context.clearRect(0,0,canvas.width,canvas.height);
+                    canvas.style.backgroundColor = "transparent";
+                    context.fillStyle = "white";
+                    context.textAlign = "left";
+                    context.font = "18px LeagueGothic, Tahoma, Geneva, sans-serif";
+                    context.fillText("There was an error rendering ", 10, 20);  
+                    context.fillText("the video to the canvas.", 10, 40);
+                    context.fillText("Perhaps you are viewing this page from", 10, 
+                ↵70);
+                    context.fillText("a file on your computer?", 10, 90);
+                    context.fillText("Try viewing this page online instead.", 10, 
+                ↵130); 
+                
+                    return false; </li>
+                <li>XML stands for eXtensible Markup Language</li>
+                <li>SVG: The viewBox attribute defines the starting location, width, and height of the SVG image.</li>
+                <li>Avoid using filters, and instead modify the color of the original image.</li>
+                <li>Raphaël is an open-source JavaScript library that makes drawing and animating with SVG much easier.</li>
+                <li>.spin {
+                    position: absolute;
+                    top: 8px;
+                    left: 55px;
+                }</li>
+                <li>var container = Raphael(document.getElementById("spinner"),125,125);
+                    var spinner = container.image("images/spinnerBW.png",0,0,125,125);
+                    var attrsToAnimate = { transform: "r720" }; 
+                    spinner.animate(attrsToAnimate, 60000);</li>
+                <li>Canvas is generally the better choice if you’re looking to design a game requiring lots of animations.</li>
+                <li>What you draw to SVG is accessible via the DOM, because its mode is retained mode, meaning that the structure of the image is preserved in the XML document that describes it.</li>
+                <li>Drag and Drop API --> unsupported by Android</li>
+                <li>draggable="true" --> draggable is not a Boolean attribute, so you have to explicitly set it to true</li>
+                <li>mouse.addEventListener("dragstart", function (event) {
+                    event.dataTransfer.setData("text/plain", this.id); 
+                });</li>
+                <li>var cat = document.getElementById("cat");
+                    cat.addEventListener("dragover", function(event) {
+                        event.preventDefault();
+                    });</li>
+                <li>cat.addEventListener("drop", function(event) {
+                    var mouseHash = {
+                    mouse1: 'NOMNOMNOM',
+                    mouse2: 'Meow',
+                    mouse3: 'Purrrrrr ...'
+                    };
+                }</li>
+                <li>var mouseID = event.originalEvent.dataTransfer.getData("text/plain");</li>
+                <li>var mousey = document.getElementById(item);
+                    mousey.parentNode.removeChild(mousey);</li>
+            </ul>
+        </main>
+    </body>
+</html>
