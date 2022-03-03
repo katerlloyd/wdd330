@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Week 9 notes on readings for WDD 330.">
+        <title>Week 9 Notes</title>
+        <link rel="stylesheet" href="css/week9.css">
+    </head>
+    <body>
+        <header>
+            <h1>Week 9 Notes</h1>
+        </header>
+        <main>
+            <h2>Questions</h2>
+            <ul>
+                <li>Are there any useful APIs not listed here that you would recommend?</li>
+            </ul>
+            <h2>Notes</h2>
+            <ul>
+                <li>Every browser window, tab, popup, frame, and iframe has a window object.</li>
+                <li>If you don’t know the name of the global object, you can also refer to it using the keyword this in the global scope. The following code provides a quick way of assigning the variable global to the global object:
+                    // from within the global scope
+                    const global = this;</li>
+                <li>Global variables are created without using the const, let or var keywords</li>
+                <li>x = 6;  // global variable created
+                    << 6
+                    
+                    window.x // same variable can be accessed as a property of the window object
+                    << 6
+                    </li>
+                <li>In general, you should refer to global variables without using the window object; it’s less typing and your code will be more portable between environments. An exception is if you need to check whether a global variable has been defined.</li>
+                <li>Window alert(), confirm() and prompt() ---> will stop the execution of a program when called, most browsers allow users to disable any dialogs from repeatedly appearing, meaning they are not a feature to be relied upon.</li>
+                <li>window.location.href --> returns full URL</li>
+                <li>window.history.go(1); // goes forward 1 page
+                    window.history.go(0); // reloads the current page
+                    window.history.go(-1); // goes back 1 page --> window.history.forward() and window.history.back()</li>
+                <li>The window.history.length property shows how many pages have been visited before arriving at the current page.</li>
+                <li>const popup = window.open('https://sitepoint.com','
+                    SitePoint','width=400,height=400,resizable=yes'); popup.close(); --> do not use pop-ups</li>
+                <li>window.screen.height
+                    << 1024
+                    
+                    window.screen.width
+                    << 1280</li>
+                <li>window.screen.availWidth
+                    << 1280
+                    
+                    window.screen.availHeight
+                    << 995</li>
+                <li>The Screen object has more uses for mobile devices. It also allows you to do things like turn off the device’s screen, detect a change in its orientation or lock it in a specific orientation.</li>
+                <li>Cookies are also limited to storing up to 4KB of data, although 20 cookies are allowed per domain, which can add up to quite a lot of data. Cookies take the form of a text file that contain a list of name/value pairs separated by semicolons. </li>
+                <li>document.cookie = 'name=Superman';</li>
+                <li>document.cookie: ---> read cookie jar</li>
+                <li>const cookies = document.cookie.split("; ");
+                    for (crumb of cookies){
+                        const [key,value] = crumb.split("=");
+                        console.log(`The value of ${key} is ${value}`);
+                    }</li>
+                <li>const expiryDate = new Date(); 
+                    const tomorrow = expiryDate.getTime() + 1000 * 60 * 60 * 24;
+                    expiryDate.setTime(tomorrow);
+                    
+                    document.cookie = `name=Batman; expires=${ expiryDate.toUTCString()}`; OR document.cookie = 'name=Batman; max-age=86400' // 86400 secs = 1 day</li>
+                <li>Browsers can sometimes hold on to information stored in a cookie that should have expired when the “session restore” feature is used after a crash.</li>
+                <li>document.cookie = 'name=Batman; domain=sitepoint.com'; 
+                    A cookie can only be read by the domain that created it anyway, but doing this will allow all subdomains of sitepoint.com (such as javascript.sitepoint.com and books.sitepoint.com) to read it.</li>
+                <li>Adding the string ; secure to the end of a cookie will ensure it’s only transmitted over a secure HTTPS network</li>
+                <li>To remove a cookie, you need to set it to expire at a time in the past:
+                    document.cookie = 'name=Batman; expires=Thu, 01 Jan 1970 00:00:01 GMT';</li>
+                <li>To remove a cookie, you need to set it to expire at a time in the past:
+                    document.cookie = 'name=Batman; expires=Thu, 01 Jan 1970 00:00:01 GMT';</li>
+                <li>window.setTimeout( () => alert("Time's Up!"), 3000);</li>
+                <li>The window.setInterval() method works in a similar way to window.setTimeout(), except that it will repeatedly invoke the callback function after every given number of milliseconds.</li>
+                <li>The binding of this is set to the window object, rather than the method’s object</li>
+                <li>ANIMATION: const squareElement = document.getElementById('square');
+                    let angle = 0;
+                    
+                    setInterval( () => {
+                        angle = (angle + 2) % 360;
+                        squareElement.style.transform = `rotate(${angle}deg)`
+                    }, 1000/60); OR const squareElement = document.getElementById('square');
+                    let angle = 0;
+                    
+                    function rotate() {
+                        angle = (angle + 2)%360;
+                        squareElement.style.transform = `rotate(${angle}deg)`
+                        window.requestAnimationFrame(rotate);
+                    } OR #square {
+                        margin: 100px;
+                        width: 100px;
+                        height: 100px;
+                        background: #cc0;
+                        animation: spin 4s linear infinite;
+                    }
+                    
+                    @keyframes spin { from { transform:rotate(0deg); } to { transform:rotate(3600deg); } }</li>
+                <li>The data- attribute is a way of embedding data in a web page using custom attributes that are ignored by the browser. They’re also private to a page, so are not intended to be used by an external service – their sole purpose is to be used by a JavaScript program. </li>
+                <li>data-powers='flight superSpeed' --> const superman = document.getElementById('hero');
+                    const powers = superman.dataset.powers;</li>
+                <li>const maxLength = Number(element.dataset.maxLength); --> convert data-max-length into number</li>
+                <li>The Web Storage API has some crucial differences with cookies:
+
+                    Information stored is not shared with the server on every request.
+                    
+                    Information is available in multiple windows of the browser (but only if the domain is the same).
+                    
+                    Storage capacity limit is much larger than the 4KB limit for cookies (There is no actual limit in the specification, but most browsers have a limit set at 5GB per domain). Any data stored does not automatically expire as it does with cookies. This potentially makes cookies a better choice for something like showing a popup once a day.</li>
+                <li>delete localStorage.name; OR localStorage.clear(); OR localStorage.removeItem('name');</li>
+                <li>storage event --> addEventListener('storage', (event) => {
+                    console.log(`The ${event.key} was updated from ${event.oldValue} to ${event.newValue} and saved in 
+                    ${event.storageArea}`) }, false);</li>
+                <li>localStorage.setItem('superman', JSON.stringify(hero);</li>
+                <li>superman = JSON.parse(localStorage.getItem('superman'));</li>
+                <li>navigator.geolocation.getCurrentPosition(youAreHere);</li>
+                <li>function youAreHere(position) {
+                    console.log(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`); 
+                }</li>
+                <li>const id = navigator.geolocation.watchPosition(youAreHere); --> navigator.geolocation.clearWatch(id);</li>
+                <li>THREADING - const worker = new Worker('task.js');</li>
+                <li>At the time of writing, the Chrome browser won't let you run workers from local files like this. A workaround is start Chrome using the --allow-file-access-from-files flag, or simply use a different browser for this example.
+
+                    If you decide to use the --allow-file-access-from-files flag, make sure you only use this for development, rather than for regular browsing.</li>
+                <li>worker.postMessage('Hello'); --> 
+                    self.postMessage('Finished'); --> When a message is posted, a message event is fired, so they can be dealt with using an event listener.</li>
+                <li>worker.terminate(); OR self.close();</li>
+                <li>const btn = document.getElementById('rainbow');
+
+                    const rainbow = ['red','orange','yellow','green','blue','rebeccapurple','violet'];
+                    
+                    function change() {      
+                        document.body.style.background = rainbow[Math.floor(7*
+                        Math.random())];
+                    }
+                    btn.addEventListener('click', change);</li>
+                <li>const form = document.forms[0];
+                    form.addEventListener('submit', factorize, false);
+                    
+                    function factorize(event) {
+                        // prevent the form from being submitted
+                        event.preventDefault();     
+                    
+                        const number = Number(form.number.value);
+                        document.getElementById('output').innerText = factorsOf(number);  
+                    }
+                    
+                    function factorsOf(n) {
+                        if(Number.isNaN(Number(n))) {
+                            throw new RangeError('Argument Error: Value must be an integer');
+                        }
+                        if(n < 0) {
+                            throw new RangeError('Argument Error: Number must be positive');
+                        }
+                        if(!Number.isInteger(n)) {
+                            throw new RangeError('Argument Error: Number must be an integer');
+                        }
+                        const factors = [];
+                        for (let i=1 , max = Math.sqrt(n); i <= max ; i++) {
+                            if (n%i === 0){
+                            factors.push(i,n/i);
+                            }
+                        }
+                        return factors.sort((a,b) =>  a - b);
+                    }</li>
+                <li>function factorize(event) {
+                    // prevent the form from being submitted
+                    event.preventDefault();   
+                    document.getElementById('output').innerHTML = '<p>This could take a while ...</p>';
+                    const number = Number(form.number.value);
+                
+                    if(window.Worker) {
+                        const worker = new Worker('factors.js');
+                        worker.postMessage(number);
+                        worker.addEventListener('message', (event) => {
+                        document.getElementById('output').innerHTML = event.data;
+                        }, false);
+                    }
+                }</li>
+                <li>self.addEventListener('message', (event) => {
+
+                    const factors = String(factorsOf(Number(event.data)));
+                    self.postMessage(factors);
+                    self.close();
+                
+                }, false);</li>
+                <li>The Service Worker API allows a worker script to run in the background with the added benefit of being able to intercept network requests. This allows you to take alternative action if the network is offline, and effectively create app-like offline experiences. Service workers also allow access to push notifications and background syncing. Service workers require a secure network to run on HTTPS to avoid any malicious code hijacking network requests.</li>
+                <li>Websocket is a new protocol that allows two-way communication with a server – also known as push messaging. This means that a connection is kept open and responses are ‘pushed’ to the client as soon as they are received.</li>
+                <li>const URL = 'wss://echo.websocket.org/';
+                    const outputDiv = document.getElementById('output');
+                    const form = document.forms[0];
+                    const connection = new WebSocket(URL);</li>
+                <li>connection.addEventListener('open', () => {
+                    output('CONNECTED');
+                }, false);</li>
+                <li>function output(message) {
+                    const para = document.createElement('p');
+                    para.innerHTML = message;
+                    outputDiv.appendChild(para);
+                }</li>
+                <li>form.addEventListener('submit', message, false);</li>
+                <li>function message(event) {
+                    event.preventDefault();
+                    const text = form.message.value;
+                    output(`SENT: ${text}`);
+                    connection.send(text);
+                }</li>
+                <li>connection.addEventListener('message', (event) => {
+                    output(`RESPONSE: ${event.data}`);
+                }, false);</li>
+                <li>connection.addEventListener('close', () => {
+                    output('DISCONNECTED');
+                }, false);
+                
+                connection.addEventListener('error', (event) => {
+                output(`<span style='color: red;'>ERROR: ${event.data}</span>`);
+                }, false);</li>
+                <li>The Notification API allows you to show messages using the system's notifications. This is usually a popup in the corner of the screen, but it changes depending on the operating system. An advantage of using the system notification is that they will still be displayed even if the web page that calls them isn't the current tab.</li>
+                <li>if(window.Notification) {
+                    Notification.requestPermission()
+                    .then((permission) => {
+                        if(Notification.permission === 'granted') {
+                        new Notification('Hello JavaScript!');
+                        }
+                    });
+                } --> Before you can send notifications, you need to get permission granted by the user.</li>
+                <li>const notification = new Notification('JavaScript: Novice to Ninja',{
+                    body: 'The new book from SitePoint',
+                    icon: 'sitepointlogo.png'
+                }); --> notification.close();</li>
+                <li>notification.addEventListener('click', () => {
+                    window.open('https://sitepoint.com')
+                    }, false);</li>
+                <li>Any content inside the audio or video tags will only display if the browser does not support them; hence, it can be used to display a message to users of older browsers without support for these features. The controls attribute can be added (without any value) and will display the browser’s native controls, such as play, pause, and volume control</li>
+                <li>const video = document.getElementsByTagName('video')[0];</li>
+                <li>video.volume = 0.9; --> video.muted = true; --> video.currentTime += 10; // jumps forward 10 seconds</li>
+                <li>video.playbackRate = 8; // fast-forward at 8 times as fast --> video.loop = true; --> video.duration;</li>
+                <li>video.addEventListener('loadedmetadata', () => { console.log(video.duration); });</li>
+                <li>Audio and video clips also have a number of events that will fire when they occur</li>
+                <li>The list of APIs is constantly growing, and includes APIs for accessing a device’s camera, uploading files, accessing the battery status, handling push notifications, building drag-and-drop functionality, creating 3D effects with WebGL, and many more! A comprehensive list of HTML5 APIs can be found at the Mozilla Developer Network.</li>
+                <li>The terms shim and polyfill are often used interchangeably. The main difference between them is that a shim is a piece of code that adds some missing functionality to a browser, although the implementation method may differ slightly from the standard API. A polyfill is a shim that achieves the same functionality, while also using the API commands that would be used if the feature was supported natively.</li>
+            </ul>
+        </main>
+    </body>
+</html>
