@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+	background-color: #101054;
+	color: #000000;
+	font-family: 'Poppins', sans-serif;
+}
+
+header, nav, footer {
+    color: #ffffff;
+}
+
+main {
+	background-color: #e4e4f5;
+}
+
+h1 {
+	color: #ffffff;
+	text-transform: uppercase;
+	letter-spacing: 1rem;
+	text-align: center;
+}
+
+.planet-cards {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+.planet-cards {
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.card {
+	color: #ffffff;
+	padding: 1rem;
+	text-align: center;
+	background-color: #000000;
+	border-radius: 15px;
+}
+
+.card h2 {
+	letter-spacing: 1rem;
+	color: #101054;
+}
+
+
+
+.box {
+  width: 175px;
+  height: 175px;
+  border: 0px solid #ffffff;
+  box-shadow: 0px 0px 10px #75756d;
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  margin: auto;
+	border-radius: 50%;
+  background: radial-gradient(#fffedb, #000000, #000000, #000000);
+}
+
+.planet {
+  width: 50px;
+  height: 50px;
+	background: radial-gradient(#fffedb, #ffffff);
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  margin:auto;
+  border-radius: 50%;
+  box-shadow: 2px 2px 0px #c2c08c;
+}
+
+.circle{
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(#ffe3b3, #ffffff);
+  border-radius:50%;
+  position:absolute;
+  top:0; bottom:0; left:0; right:0;
+  overflow: hidden;
+  margin: auto;
+  animation: circle 4s linear infinite;
+}
+
+.circle2 {
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(#ffdcd9, #ffffff);
+  border-radius:50%;
+  position:absolute;
+  top:0; bottom:0; left:0; right:0;
+  overflow:hidden;
+  margin:auto;
+  animation: circle 5s linear infinite;
+}
+
+.circle3 {
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(#e3e3dc, #ffffff);
+  border-radius:50%;
+  position:absolute;
+  top:0; bottom:0; left:0; right:0;
+  overflow:hidden;
+  margin:auto;
+  animation: circle 6s linear infinite;
+}
+
+.circle4 {
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(#aba7a1, #ffffff);
+  border-radius:50%;
+  position:absolute;
+  top:0; bottom:0; left:0; right:0;
+  overflow:hidden;
+  margin:auto;
+  animation: circle 7s linear infinite;
+}
+
+.circle5 {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(#75756d, #ffffff);
+  border-radius:50%;
+  position:absolute;
+  top:0; bottom:0; left:0; right:0;
+  overflow:hidden;
+  margin:auto;
+  animation: circle 8s linear infinite;
+}
+
+.circle6 {
+  width: 22px;
+  height: 22px;
+  background: radial-gradient(#d4b094, #ffffff);
+  border-radius:50%;
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  overflow: hidden;
+  margin: auto;
+  animation: circle 9s linear infinite;
+}
+
+@keyframes circle{
+  0%{
+    transform:rotate(0deg)
+              translate(-50px)
+              rotate(0deg);
+
+  }
+  100%{
+    transform:rotate(360deg)
+              translate(-50px)
+              rotate(-360deg);
+  }
+}
+

@@ -1,0 +1,1 @@
+const url = 'https://api.le-systeme-solaire.net/rest/bodies/';
