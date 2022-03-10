@@ -1,46 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 body {
-	background-color: #101054;
-	color: #000000;
+	background-color: #000000;
+	color: #ffffff;
 	font-family: 'Poppins', sans-serif;
+	font-size: 16px;
 }
 
-header, nav, footer {
+header, footer {
+	background-color: #101054;
     color: #ffffff;
+    margin: 0;
+    padding: 0.5rem;
+    text-align: center;
 }
 
 main {
-	background-color: #e4e4f5;
+	background-color: #000000;
 }
 
 h1 {
 	color: #ffffff;
 	text-transform: uppercase;
 	letter-spacing: 1rem;
-	text-align: center;
+	margin: 0;
 }
 
-.planet-cards {
+#planet-cards {
 	display: grid;
-	grid-template-columns: 1fr;
-}
-
-.planet-cards {
 	grid-template-columns: 1fr 1fr 1fr;
+	background-color: #000000;
+	text-align: center;
 }
 
 .card {
 	color: #ffffff;
-	padding: 1rem;
-	text-align: center;
+	margin: 1rem;
 	background-color: #000000;
 	border-radius: 15px;
+	border: 2px solid #ffffff;
+	cursor: pointer;
 }
 
 .card h2 {
-	letter-spacing: 1rem;
-	color: #101054;
+	letter-spacing: 0.5rem;
+	color: #ffffff;
+	text-transform: uppercase;
+}
+
+.box:nth-child(1) {
+	margin: 5rem auto;
 }
 
 
@@ -48,10 +57,7 @@ h1 {
 .box {
   width: 175px;
   height: 175px;
-  border: 0px solid #ffffff;
-  box-shadow: 0px 0px 10px #75756d;
-  position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
+  position: relative;
   margin: auto;
 	border-radius: 50%;
   background: radial-gradient(#fffedb, #000000, #000000, #000000);
@@ -68,7 +74,7 @@ h1 {
   box-shadow: 2px 2px 0px #c2c08c;
 }
 
-.circle{
+.circle1 {
   width: 12px;
   height: 12px;
   background: radial-gradient(#ffe3b3, #ffffff);
