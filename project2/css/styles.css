@@ -4,7 +4,8 @@ body {
 	background-color: #000000;
 	color: #ffffff;
 	font-family: 'Poppins', sans-serif;
-	font-size: 16px;
+	font-size: 18px;
+	margin: 0;
 }
 
 header, footer {
@@ -55,108 +56,113 @@ h1 {
 
 
 .box {
-  width: 175px;
-  height: 175px;
-  position: relative;
-  margin: auto;
+	width: 175px;
+	height: 175px;
+	position: relative;
+	margin: auto;
 	border-radius: 50%;
-  background: radial-gradient(#fffedb, #000000, #000000, #000000);
+	background: radial-gradient(#fffedb, #000000, #000000, #000000);
 }
 
 .planet {
-  width: 50px;
-  height: 50px;
+	width: 50px;
+	height: 50px;
 	background: radial-gradient(#fffedb, #ffffff);
-  position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
-  margin:auto;
-  border-radius: 50%;
-  box-shadow: 2px 2px 0px #c2c08c;
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+	margin:auto;
+	border-radius: 50%;
+	box-shadow: 2px 2px 0px #c2c08c;
 }
 
 .circle1 {
-  width: 12px;
-  height: 12px;
-  background: radial-gradient(#ffe3b3, #ffffff);
-  border-radius:50%;
-  position:absolute;
-  top:0; bottom:0; left:0; right:0;
-  overflow: hidden;
-  margin: auto;
-  animation: circle 4s linear infinite;
+	width: 12px;
+	height: 12px;
+	background: radial-gradient(#ffe3b3, #ffffff);
+	border-radius:50%;
+	position:absolute;
+	top:0; bottom:0; left:0; right:0;
+	overflow: hidden;
+	margin: auto;
+	animation: circle 4s linear infinite;
 }
 
 .circle2 {
-  width: 14px;
-  height: 14px;
-  background: radial-gradient(#ffdcd9, #ffffff);
-  border-radius:50%;
-  position:absolute;
-  top:0; bottom:0; left:0; right:0;
-  overflow:hidden;
-  margin:auto;
-  animation: circle 5s linear infinite;
+	width: 14px;
+	height: 14px;
+	background: radial-gradient(#ffdcd9, #ffffff);
+	border-radius:50%;
+	position:absolute;
+	top:0; bottom:0; left:0; right:0;
+	overflow:hidden;
+	margin:auto;
+	animation: circle 5s linear infinite;
 }
 
 .circle3 {
-  width: 16px;
-  height: 16px;
-  background: radial-gradient(#e3e3dc, #ffffff);
-  border-radius:50%;
-  position:absolute;
-  top:0; bottom:0; left:0; right:0;
-  overflow:hidden;
-  margin:auto;
-  animation: circle 6s linear infinite;
+	width: 16px;
+	height: 16px;
+	background: radial-gradient(#e3e3dc, #ffffff);
+	border-radius:50%;
+	position:absolute;
+	top:0; bottom:0; left:0; right:0;
+	overflow:hidden;
+	margin:auto;
+	animation: circle 6s linear infinite;
 }
 
 .circle4 {
-  width: 18px;
-  height: 18px;
-  background: radial-gradient(#aba7a1, #ffffff);
-  border-radius:50%;
-  position:absolute;
-  top:0; bottom:0; left:0; right:0;
-  overflow:hidden;
-  margin:auto;
-  animation: circle 7s linear infinite;
+	width: 18px;
+	height: 18px;
+	background: radial-gradient(#aba7a1, #ffffff);
+	border-radius:50%;
+	position:absolute;
+	top:0; bottom:0; left:0; right:0;
+	overflow:hidden;
+	margin:auto;
+	animation: circle 7s linear infinite;
 }
 
 .circle5 {
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(#75756d, #ffffff);
-  border-radius:50%;
-  position:absolute;
-  top:0; bottom:0; left:0; right:0;
-  overflow:hidden;
-  margin:auto;
-  animation: circle 8s linear infinite;
+	width: 20px;
+	height: 20px;
+	background: radial-gradient(#75756d, #ffffff);
+	border-radius:50%;
+	position:absolute;
+	top:0; bottom:0; left:0; right:0;
+	overflow:hidden;
+	margin:auto;
+	animation: circle 8s linear infinite;
 }
 
 .circle6 {
-  width: 22px;
-  height: 22px;
-  background: radial-gradient(#d4b094, #ffffff);
-  border-radius:50%;
-  position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
-  overflow: hidden;
-  margin: auto;
-  animation: circle 9s linear infinite;
+	width: 22px;
+	height: 22px;
+	background: radial-gradient(#d4b094, #ffffff);
+	border-radius:50%;
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+	overflow: hidden;
+	margin: auto;
+	animation: circle 9s linear infinite;
 }
 
-@keyframes circle{
-  0%{
-    transform:rotate(0deg)
-              translate(-50px)
-              rotate(0deg);
+@keyframes circle {
+	0% {
+		transform: rotate(0deg)
+		           translate(-50px)
+		           rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg)
+		           translate(-50px)
+		           rotate(-360deg);
+	}
+}
 
-  }
-  100%{
-    transform:rotate(360deg)
-              translate(-50px)
-              rotate(-360deg);
-  }
+@media only screen and (max-width: 43rem) {
+	#planet-cards {
+    	grid-template-columns: 1fr;
+    }
 }
 

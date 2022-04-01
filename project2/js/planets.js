@@ -55,6 +55,7 @@ const getAllPlanets = (url) => {
                 card.appendChild(p);
 
                 card.addEventListener('click', () => {
+
                     console.log(item.id);
                 });
     			container.appendChild(card);
