@@ -20,6 +20,42 @@ const insertAnimation = (numberOfMoons) => {
 	return box;
 }
 
+const getPlanetInfo = (id) => {
+	const planetUrl = `https://api.le-systeme-solaire.net/rest/bodies/${id}`;
+	fetch(planetUrl).then((response) => response.json()).then((jsonObject) => {
+
+		const cards = document.querySelectorAll('.card');
+		console.log(cards);
+		cards.forEach(item => {
+			item.style.display = 'none';
+		});
+
+        let planet = document.createElement('div');
+
+
+		let numberOfMoons;
+        if (jsonObject.moons !== null) {
+            numberOfMoons = jsonObject.moons.length;
+            planet.appendChild(insertAnimation(numberOfMoons));
+
+			jsonObject.moons.forEach(moon => {
+	            let p2 = document.createElement('p');
+	            p2.textContent = moon.moon;
+	            planet.appendChild(p2);
+	        });
+	    } else {
+	        numberOfMoons = 0;
+            planet.appendChild(insertAnimation(numberOfMoons));
+	        let p2 = document.createElement('p');
+            p2.textContent = 'No moons';
+            planet.appendChild(p2);
+	    }
+
+        let container = document.getElementById('planet-cards');
+        container.appendChild(planet);
+	})
+}
+
 const getAllPlanets = (url) => {
 	fetch(url).then((response) => response.json()).then((jsonObject) => {
 
@@ -39,12 +75,6 @@ const getAllPlanets = (url) => {
     			let numberOfMoons;
     			if (item.moons !== null) {
     				numberOfMoons = item.moons.length;
-
-//    				item.moons.forEach(moon => {
-//                        let p2 = document.createElement('p');
-//                        p2.textContent = moon.moon;
-//                        card.appendChild(p2);
-//    				});
     			} else {
     				numberOfMoons = 0;
     			}
@@ -55,7 +85,7 @@ const getAllPlanets = (url) => {
                 card.appendChild(p);
 
                 card.addEventListener('click', () => {
-
+					getPlanetInfo(item.id);
                     console.log(item.id);
                 });
     			container.appendChild(card);
