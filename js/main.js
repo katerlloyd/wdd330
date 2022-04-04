@@ -39,14 +39,10 @@ const array = [
         label: 'Week 10 Notes', 
         link: 'week10/index.html'
     },
-    {
-        label: 'Week 11 Notes', 
-        link: 'week11/index.html'
-    },
-    {
-        label: 'Week 12 Notes', 
-        link: 'week12/index.html'
-    }];
+	{
+		label: 'Final Project',
+		link: 'project2/index.html'
+	}];
 
 let ol = document.querySelector('ol');
 
